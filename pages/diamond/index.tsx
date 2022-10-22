@@ -1,22 +1,18 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../../styles/diamond.module.css";
+import Diamond from "../../components/Diamond";
+import { Container } from "../../components/Diamond/styles";
 
-const Diamond: NextPage = () => {
+const DiamondPage: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
-        <title>Diamond</title>
+        <title>💎 Diamond</title>
       </Head>
 
-      <div className={styles.diamond}>
-        <span className={styles.first_span}></span>
-        <span className={styles.second_span}></span>
-        <span className={styles.third_span}></span>
-        <span className={styles.forth_span}></span>
-      </div>
-    </div>
+      <Diamond />
+    </Container>
   );
 };
 
-export default Diamond;
+export default DiamondPage;
