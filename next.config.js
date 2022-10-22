@@ -2,8 +2,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/css-arts' ,
-  assetPrefix: isProd ? "/css-arts/" : "",
+  assetPrefix: "",
   reactStrictMode: true,
   swcMinify: true,
   images: {
