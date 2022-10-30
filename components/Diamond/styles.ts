@@ -3,7 +3,7 @@ import styled from "styled-components";
 const diamondHeight = 30;
 const spanHeight = diamondHeight / 4;
 
-export const Container = styled.div`
+export const PageWrapper = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;

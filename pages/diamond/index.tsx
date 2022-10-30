@@ -1,17 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Diamond from "../../components/Diamond";
-import { Container } from "../../components/Diamond/styles";
+import { PageWrapper } from "../../components/Diamond/styles";
 
 const DiamondPage: NextPage = () => {
   return (
-    <Container>
+    <PageWrapper>
       <Head>
         <title>💎 Diamond</title>
       </Head>
 
       <Diamond />
-    </Container>
+    </PageWrapper>
   );
 };
 
