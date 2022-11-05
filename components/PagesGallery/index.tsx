@@ -1,8 +1,13 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 type Props = {};
 
 const PagesGallery = (props: Props) => {
+  const router = useRouter();
+
+  console.log({ router });
+
   return (
     <div>
       <iframe
