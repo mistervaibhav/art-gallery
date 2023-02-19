@@ -21,16 +21,30 @@ const StaggeredGrid = () => {
     setRows(rows);
   }
 
-  function onClickTile(index: number) {
+  async function onClickTile(index: number) {
     animation.current = anime({
       targets: ".tile",
-      backgroundColor: COLORS[Math.floor(Math.random() * COLORS.length)],
+      // backgroundColor: "#ff0000",
+      background: COLORS[Math.floor(Math.random() * COLORS.length)],
       scale: [
         { value: 0.1, easing: "easeOutSine", duration: 500 },
         { value: 1, easing: "easeInOutQuad", duration: 1200 },
       ],
       delay: anime.stagger(50, { grid: [columns, rows], from: index }),
     });
+
+    await animation.current.finished;
+
+    // animation.current = anime({
+    //   targets: ".tile",
+    //   backgroundColor: "#00ff00",
+    //   // background: COLORS[Math.floor(Math.random() * COLORS.length)],
+    //   scale: [
+    //     { value: 0.1, easing: "easeOutSine", duration: 500 },
+    //     { value: 1, easing: "easeInOutQuad", duration: 1200 },
+    //   ],
+    //   delay: anime.stagger(50, { grid: [columns, rows], from: index }),
+    // });
   }
 
   useEffect(() => {

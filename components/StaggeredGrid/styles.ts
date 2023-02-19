@@ -28,7 +28,7 @@ export const TilesContainer = styled.div<ITilesContainerProps>`
   width: 100%;
   height: 100%;
   gap: 0;
-  background: linear-gradient(to right, #7b4397, #dc2430, #7b4397);
+  /* background: linear-gradient(to right, #7b4397, #dc2430, #7b4397); */
   background-size: 200%;
   animation: ${backgroundPan} 7s linear infinite;
   display: grid;
@@ -41,10 +41,10 @@ export const Tile = styled.span`
   cursor: pointer;
   position: relative;
 
-  &::before {
+  /* &::before {
     content: "";
     background: #16161d;
     position: absolute;
     inset: 0.5px;
-  }
+  } */
 `;
