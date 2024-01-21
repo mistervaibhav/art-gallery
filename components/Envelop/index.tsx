@@ -5,4 +5,4 @@ const Envelop = () => {
   return <div>SADSF</div>;
 };
 
-export default Envelop;
+Envelop;

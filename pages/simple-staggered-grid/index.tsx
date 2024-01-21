@@ -13,7 +13,7 @@ const StaggeredGridPage: NextPage = () => {
       <Head>
         <title>Staggered Grid</title>
       </Head>
-      <StaggeredGrid isCooler />
+      <StaggeredGrid />
     </PageWrapper>
   );
 };

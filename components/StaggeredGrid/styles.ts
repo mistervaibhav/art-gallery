@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { TILE_DIMENSIONS } from "./constants";
+import styled, { css, keyframes } from "styled-components";
+import { IStaggeredGridProps } from "./types";
 
 export const PageWrapper = styled.div`
   height: 100vh;
@@ -9,7 +9,7 @@ export const PageWrapper = styled.div`
   justify-content: center;
 `;
 
-interface ITilesContainerProps {
+interface ITilesContainerProps extends IStaggeredGridProps {
   rows: number;
   columns: number;
 }
@@ -27,24 +27,32 @@ const backgroundPan = keyframes`
 export const TilesContainer = styled.div<ITilesContainerProps>`
   width: 100%;
   height: 100%;
-  gap: 0;
-  /* background: linear-gradient(to right, #7b4397, #dc2430, #7b4397); */
-  background-size: 200%;
-  animation: ${backgroundPan} 7s linear infinite;
   display: grid;
   grid-template-rows: ${({ rows }) => `repeat(${rows}, 1fr)`};
   grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
+
+  ${({ isCooler }) =>
+    isCooler &&
+    css`
+      background: linear-gradient(to right, #7b4397, #dc2430, #7b4397);
+      background-size: 200%;
+      animation: ${backgroundPan} 7s linear infinite;
+    `}
 `;
 
-export const Tile = styled.span`
+export const Tile = styled.span<IStaggeredGridProps>`
   box-sizing: content-box;
   cursor: pointer;
   position: relative;
 
-  /* &::before {
-    content: "";
-    background: #16161d;
-    position: absolute;
-    inset: 0.5px;
-  } */
+  ${({ isCooler }) =>
+    isCooler &&
+    css`
+      &::before {
+        content: "";
+        background: #16161d;
+        position: absolute;
+        inset: 0.5px;
+      }
+    `}
 `;

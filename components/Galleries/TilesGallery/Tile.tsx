@@ -7,20 +7,13 @@ interface ITileProps {
 
 const Tile = ({ pathname }: ITileProps) => {
   return (
-    <Styles.Tile
-      onClick={() => {
-        console.log("yay");
-      }}
-    >
+    <Styles.Tile>
       <Styles.Iframe
         style={{
           height: "auto",
           width: "300px",
         }}
         src={`/${pathname}`}
-        onClick={() => {
-          console.log("nayy");
-        }}
       ></Styles.Iframe>
     </Styles.Tile>
   );

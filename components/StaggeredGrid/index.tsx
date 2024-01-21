@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import anime, { AnimeInstance } from "animejs";
-import { COLORS, TILE_DIMENSIONS } from "./constants";
+import { getAnimationConfig } from "./helpers";
+import { IStaggeredGridProps } from "./types";
+import { COLORS, SimpleAnimationConfig, TILE_DIMENSIONS } from "./constants";
 import * as Styles from "./styles";
 
-const StaggeredGrid = () => {
-  const [rows, setRows] = useState(0);
-  const [columns, setColumns] = useState(0);
+const StaggeredGrid = ({ isCooler = false }: IStaggeredGridProps) => {
+  const [rows, setRows] = useState<number>(0);
+  const [columns, setColumns] = useState<number>(0);
 
   const animation = useRef<AnimeInstance>();
 
@@ -24,13 +26,14 @@ const StaggeredGrid = () => {
   async function onClickTile(index: number) {
     animation.current = anime({
       targets: ".tile",
-      // backgroundColor: "#ff0000",
-      background: COLORS[Math.floor(Math.random() * COLORS.length)],
+      delay: anime.stagger(50, { grid: [columns, rows], from: index }),
       scale: [
         { value: 0.1, easing: "easeOutSine", duration: 500 },
         { value: 1, easing: "easeInOutQuad", duration: 1200 },
       ],
-      delay: anime.stagger(50, { grid: [columns, rows], from: index }),
+      ...(!isCooler && {
+        backgroundColor: COLORS[Math.floor(Math.random() * COLORS.length)],
+      }),
     });
 
     await animation.current.finished;
@@ -46,7 +49,7 @@ const StaggeredGrid = () => {
     //   delay: anime.stagger(50, { grid: [columns, rows], from: index }),
     // });
   }
-
+  //
   useEffect(() => {
     createTiles();
   }, []);
@@ -64,12 +67,13 @@ const StaggeredGrid = () => {
   }, []);
 
   return (
-    <Styles.TilesContainer rows={rows} columns={columns}>
+    <Styles.TilesContainer rows={rows} columns={columns} isCooler={isCooler}>
       {Array.from(Array(rows * columns)).map((_, index) => (
         <Styles.Tile
           key={index}
           className="tile"
           onClick={() => onClickTile(index)}
+          isCooler={isCooler}
         />
       ))}
     </Styles.TilesContainer>
